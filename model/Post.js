@@ -25,6 +25,15 @@ const postSchema = new Schema(
             type: String,
             enum: [true, false],
         },
+        owner:{
+            type: Schema.Types.ObjectId,
+            required: true,
+            ref: 'user',
+        },
+        postAvatar:{
+            type: String,
+            default: "",
+        }
     },
     { versionKey: false, timestamps: true }
 );

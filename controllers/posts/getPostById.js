@@ -1,13 +1,11 @@
-import { getAllPosts } from "../../helpers/index.js";
+import {  populate } from "dotenv";
 import { Post } from "../../model/Post.js";
 
 const getPostById = async (req, res) => {
-    
+    const {_id:owner} = req.user;
     const postId = req.params.id;
-    // const postsArr = await getAllPosts();
-    const result = await Post.findById(postId);
 
-    // const result = postsArr.find((post) => post.id === postId);
+    const result = await Post.findOne({_id: postId, owner}).populate("owner", "email", "userName");
     if (!result) {
         res.status(400).send(`Can not find a post with id ${postId}`);
     }

@@ -7,7 +7,6 @@ const deletePost = async (req, res) => {
     if (!post) {
         throw HTTPError(400, "Ca not finde post by id")
     }
-
     res.json({post, message: "delete succes"});
 }
 
